@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Papir, kamen, makaze</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="view">
+        <div class="sredina">
+            <button onclick="dodaj(0)">papir</button>
+            <button onclick="dodaj(1)">kamen</button>
+            <button onclick="dodaj(2)">makaze</button>
+        </div>
+
+
+        <p id="pobijednik"></p>
+        <p id="pc_brojac">PC: 0</p>
+        <p id="user_brojac">Igrac: 0</p>
+
+        <div class="ispis">
+            <h1 id="ispis"></h1>
+            <h1>VS</h1>
+            <h1 id="pc"></h1>
+        </div>
+    </div>
+    <script>
+        let niz = ["Papir", "Kamen", "Makaze"]
+        let poruka = document.getElementById("pobijednik")
+        let pc_brojac = document.getElementById("pc_brojac")
+        let user_brojac = document.getElementById("user_brojac")
+        let userbrojac = 1, pcbrojac = 1
+        dodaj = (i) => {
+            let random = Math.floor(Math.random() * 3);
+            document.getElementById("ispis").innerHTML = `${niz[i]} `
+            document.getElementById("pc").innerHTML = `${niz[random]}`
+            if (i == random) {
+                poruka.innerHTML = "neriješeno"
+                poruka.style.color = "blue"
+            }
+            else if (i == 0 && random == 1) {
+                poruka.innerHTML = "korisnik pobijedio"
+                user_brojac.innerHTML = `Igrac: ${userbrojac++}`
+                poruka.style.color = "green"
+            }
+            else if (i == 0 && random == 2) {
+                poruka.innerHTML = "comp pobijedio"
+                pc_brojac.innerHTML = `PC: ${pcbrojac++}`
+                poruka.style.color = "red"
+            }
+            else if (i == 1 && random == 2) {
+                poruka.innerHTML = "korisnik pobijedio"
+                user_brojac.innerHTML = `Igrac: ${userbrojac++}`
+                poruka.style.color = "green"
+            }
+            else if (i == 1 && random == 0) {
+                poruka.innerHTML = "comp pobijedio"
+                pc_brojac.innerHTML = `PC: ${pcbrojac++}`
+                poruka.style.color = "red"
+            }
+            else if (i == 2 && random == 0) {
+                poruka.innerHTML = "korisnik pobijedio"
+                user_brojac.innerHTML = `Igrac: ${userbrojac++}`
+                poruka.style.color = "green"
+            }
+            else {
+                poruka.innerHTML = "comp pobijedio"
+                pc_brojac.innerHTML = `PC: ${pcbrojac++}` //"PC: "+ pcbrojac++
+                poruka.style.color = "red"
+            }
+        }
+
+    </script>
+</body>
+
+</html>
